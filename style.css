@@ -1,0 +1,97 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+ul{
+    list-style: none;
+}
+body{
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
+
+.app-container{
+    width: 600px;
+    box-shadow: 0 0 7px #eee;
+    overflow: hidden;
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+}
+.app-container .left,.app-container .right{
+    display: flex;
+    flex-direction: column;
+}
+.app-container .right{
+    flex: 1;
+}
+.app-container .left{
+    position: relative;
+    border: 1px solid #aaa;
+    width: 300px;
+    height: 300px;
+}
+
+.app-container .left img{
+    width: 100px;
+}
+
+.app-container .right .imgs{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.app-container .right .imgs li img{
+    width: 100%;
+}
+
+.app-container .right .imgs li{
+    border: 1px solid transparent;
+    width: 60px;
+
+}
+.app-container .right .edit{
+    margin: 10px 0;
+    display: flex;
+    gap: 10px;
+}
+
+.app-container .right .edit input{
+    height: 30px;
+    line-height: 40px;
+    font-size: 16px;
+    padding: 10px;
+    outline: none;
+}
+.app-container .right .edit input[type=text]{
+    width: 140px;
+}
+.app-container .right .edit input[type=number]{
+    flex: 1;
+}
+.app-container .right .edit .color-picker{
+    flex: 1;
+    background-color: aquamarine;    
+}
+.app-container .right .btn{
+    display: flex;
+    gap: 10px;
+}
+.app-container .right .btn button{
+    flex: 1;
+    height: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background-color: #6fb6ea;
+    box-shadow: 3px 3px 1px #eee;
+    color: #fff;
+}
+
+.app-container .right .imgs li.active{
+    border:1px solid skyblue
+}

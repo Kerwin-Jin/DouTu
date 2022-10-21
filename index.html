@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <title>DouTu</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <div class="left">
+        <img src="./img/01.webp" alt="" srcset="" />
+        <span></span>
+      </div>
+      <div class="right">
+        <ul class="imgs">
+          <li class="active">
+            <img src="./img/01.webp" alt="" srcset="" class="active" />
+          </li>
+          <li>
+            <img src="./img/02.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/03.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/04.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/05.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/06.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/07.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/08.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/09.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/11.webp" alt="" srcset="" />
+          </li>
+          <li>
+            <img src="./img/12.webp" alt="" srcset="" />
+          </li>
+        </ul>
+        <div class="edit">
+          <input type="text" />
+          <input type="number" min="20" max="100" />
+          <span class="color-picker" id="color-picker"></span>
+        </div>
+        <div class="btn">
+          <button>下载</button>
+          <button>上传</button>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./colorpicker.js"></script>
+  <script src="./index.js"></script>
+  <script>
+    const dt = new DouTu();
+    dt.init();
+  </script>
+</html>
