@@ -37,7 +37,17 @@ body{
 }
 
 .app-container .left img{
-    width: 100px;
+    width: 200px;
+    position: absolute;
+    cursor: move;
+}
+.app-container .left span{
+    position: absolute;
+    cursor: move;
+    padding: 3px;
+}
+.app-container .left span:hover{
+    border: 1px solid #f40;
 }
 
 .app-container .right .imgs{

@@ -39,10 +39,60 @@ function DouTu() {
         this.textWrap.style.color = this.textColor = color;
       },
     });
+
+    this.drag(this.textWrap);
+  };
+
+  this.drag = (obj) => {
+    let startX = 0,
+      startY = 0,
+      startL = 0,
+      startT = 0,
+      curX = 0,
+      curY = 0;
+
+    obj.onmousedown = (evt) => {
+      startX = evt.clientX;
+      startY = evt.clientY;
+      startL = obj.offsetLeft;
+      startT = obj.offsetTop;
+
+      let maxWidth = obj.parentNode.clientWidth - obj.offsetWidth;
+      let minWidth = obj.parentNode.clientHeight - obj.offsetHeight;
+
+      document.onmousemove = (evt) => {
+        curX = evt.clientX - startX + startL;
+        curY = evt.clientY - startY + startT;
+
+        // 左右到头
+        if (curX < 0) {
+          curX = 0;
+        }
+        if (curX > maxWidth) {
+          curX = maxWidth;
+        }
+
+        // 上下到头
+        if (curY < 0) {
+          curY = 0;
+        }
+        if (curY > minWidth) {
+          curY = minWidth;
+        }
+
+        obj.style.left = curX + "px";
+        obj.style.top = curY + "px";
+
+        evt.preventDefault(); // 防止图片出现默认行为
+      };
+
+      document.onmouseup = () => (document.onmousemove = null);
+    };
   };
 
   this.init = () => {
     this.tab();
     this.edit();
+    this.drag(this.bigImg);
   };
 }
