@@ -15,7 +15,10 @@ function DouTu() {
         li.className = "active";
         this.last = li;
         const imgSrc = li.querySelector("img").src;
-        this.bigImg.src = imgSrc;
+        this.bigImg.src = imgSrc; // 更新大图
+
+        // 拖拽后图片位置已经发生了改变，点击的新图要把位置删除
+        this.bigImg.style.left = this.bigImg.style.top = 0;
       };
     });
   };
@@ -28,7 +31,8 @@ function DouTu() {
     };
 
     numberInput.onchange = () => {
-      this.textWrap.style.fontSize = this.textSize = numberInput.value + "px";
+      this.textSize = numberInput.value;
+      this.textWrap.style.fontSize = numberInput.value + "px";
     };
 
     new Colorpicker({
@@ -90,9 +94,60 @@ function DouTu() {
     };
   };
 
+  this.draw = (cb) => {
+    const canvas = document.createElement("canvas");
+
+    const context = canvas.getContext("2d");
+
+    canvas.height = 300;
+    canvas.width = 300;
+
+    // 把canvas的背景设置成白色
+    context.fillStyle = "#fff";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+
+    const image = new Image();
+    image.src = this.bigImg.src;
+
+    image.onload = () => {
+      // 画图片
+      const imageX = parseFloat(getComputedStyle(this.bigImg).left);
+      const imageY = parseFloat(getComputedStyle(this.bigImg).top);
+      const textX = parseFloat(getComputedStyle(this.textWrap).left);
+      const textY = parseFloat(getComputedStyle(this.textWrap).top);
+      context.drawImage(image, imageX, imageY, 200, 200);
+
+      // 画文本
+      context.font = `bold ${this.textSize}px Microsoft YaHei`;
+      context.fillStyle = this.textColor;
+      context.textBaseline = "top";
+      context.fillText(this.textString, textX, textY + 5);
+
+      const base64 = canvas.toDataURL(); // 把canvas导出成一张图片，返回值为该图片的base64
+      cb(base64);
+    };
+  };
+
+  this.download = () => {
+    const downloadBtn = document.querySelector(".download");
+
+    downloadBtn.onclick = () => {
+      const a = document.createElement("a");
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.download = "doutu";
+      a.href = this.draw((base64) => {
+        a.href = base64;
+        a.click();
+        document.body.removeChild(a);
+      });
+    };
+  };
+
   this.init = () => {
     this.tab();
     this.edit();
     this.drag(this.bigImg);
+    this.download();
   };
 }
